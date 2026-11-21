@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danam Sree Mahima — Python Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#ffffff;
+  --bg:#f8f8f6;
+  --ink:#111110;
+  --ink2:#3a3a37;
+  --ink3:#787872;
+  --accent:#1a1a18;
+  --line:#e2e2dc;
+  --blue:#1d4ed8;
+  --ff:'Lora',serif;
+  --fs:'Inter',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fs);font-size:16px;line-height:1.7}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(248,248,246,0.95);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1080px;margin:0 auto;
+  padding:0 3rem;
+  height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-name{font-family:var(--ff);font-size:1rem;font-weight:500;color:var(--ink);letter-spacing:0.01em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:13px;font-weight:400;color:var(--ink3);letter-spacing:0.02em;transition:color 0.15s}
+.nav-links a:hover{color:var(--ink)}
+
+/* HERO */
+.hero{
+  max-width:1080px;margin:0 auto;
+  padding:120px 3rem 80px;
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:5rem;
+  align-items:end;
+}
+.hero-label{
+  font-family:var(--fm);font-size:11px;letter-spacing:0.12em;
+  color:var(--ink3);text-transform:uppercase;margin-bottom:1.75rem;
+}
+.hero-name{
+  font-family:var(--ff);
+  font-size:clamp(2.8rem,5vw,4.4rem);
+  font-weight:400;
+  line-height:1.08;
+  color:var(--ink);
+  margin-bottom:1.75rem;
+  letter-spacing:-0.01em;
+}
+.hero-desc{
+  font-size:15px;color:var(--ink2);
+  max-width:520px;line-height:1.85;
+  margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;gap:0.75rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:0.6rem 1.4rem;
+  font-size:13px;font-weight:500;font-family:var(--fs);
+  letter-spacing:0.02em;border-radius:3px;
+  transition:all 0.15s;
+}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:var(--ink2)}
+.btn-light{background:var(--white);color:var(--ink);border:1px solid var(--line)}
+.btn-light:hover{border-color:var(--ink3)}
+.hero-right{padding-bottom:4px}
+.hero-stats{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--white)}
+.h-stat{
+  padding:1.1rem 1.5rem;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;
+}
+.h-stat:last-child{border-bottom:none}
+.h-num{font-family:var(--ff);font-size:1.7rem;font-weight:400;color:var(--ink)}
+.h-label{font-size:12px;color:var(--ink3);font-weight:400;text-align:right;max-width:140px;line-height:1.4}
+
+/* LAYOUT */
+.container{max-width:1080px;margin:0 auto;padding:0 3rem}
+.section{padding:5rem 0;border-bottom:1px solid var(--line)}
+.section:last-of-type{border-bottom:none}
+.section-header{
+  display:grid;grid-template-columns:180px 1fr;gap:3rem;
+  margin-bottom:3rem;
+  align-items:baseline;
+}
+.section-num{font-family:var(--fm);font-size:11px;color:var(--ink3);letter-spacing:0.1em;padding-top:6px}
+.section-title{font-family:var(--ff);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:400;color:var(--ink);letter-spacing:-0.01em}
+
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:180px 1fr 260px;gap:3rem;align-items:start}
+.about-spacer{}
+.about-body p{font-size:14.5px;color:var(--ink2);line-height:1.9;margin-bottom:1rem}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{color:var(--ink);font-weight:500}
+.about-meta{display:flex;flex-direction:column;gap:0}
+.meta-row{
+  padding:0.9rem 0;
+  border-bottom:1px solid var(--line);
+}
+.meta-row:first-child{border-top:1px solid var(--line)}
+.meta-key{font-family:var(--fm);font-size:10px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem}
+.meta-val{font-size:13px;color:var(--ink);font-weight:400}
+.meta-val a{color:var(--blue)}
+.meta-val a:hover{text-decoration:underline}
+
+/* EXPERIENCE */
+.exp-item{
+  display:grid;grid-template-columns:180px 1fr;gap:3rem;
+  padding:2.5rem 0;border-bottom:1px solid var(--line);
+}
+.exp-item:first-child{padding-top:0}
+.exp-item:last-child{border-bottom:none;padding-bottom:0}
+.exp-period{font-family:var(--fm);font-size:11px;color:var(--ink3);line-height:1.7;letter-spacing:0.02em}
+.exp-loc{font-size:12px;color:var(--ink3);margin-top:0.25rem}
+.exp-role{font-family:var(--ff);font-size:1.15rem;font-weight:500;color:var(--ink);margin-bottom:0.2rem}
+.exp-company{font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:1rem}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.exp-list li{
+  font-size:14px;color:var(--ink2);line-height:1.75;
+  padding-left:1.1rem;position:relative;
+}
+.exp-list li::before{content:'·';position:absolute;left:0;color:var(--ink3);font-size:16px;top:0;line-height:1.75}
+
+/* SKILLS */
+.skills-table{
+  display:grid;grid-template-columns:180px 1fr;gap:0;
+}
+.skills-table-row{
+  display:contents;
+}
+.skills-table-row .sk-cat,
+.skills-table-row .sk-items{
+  padding:1.1rem 0;
+  border-bottom:1px solid var(--line);
+}
+.skills-table-row:first-child .sk-cat,
+.skills-table-row:first-child .sk-items{border-top:1px solid var(--line)}
+.sk-cat{font-family:var(--fm);font-size:11px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;padding-right:2rem;align-self:start;padding-top:1.2rem}
+.sk-items{display:flex;flex-wrap:wrap;gap:6px}
+.sk-pill{
+  font-size:13px;color:var(--ink2);
+  background:var(--white);
+  border:1px solid var(--line);
+  padding:3px 12px;border-radius:2px;
+  font-weight:400;
+}
+
+/* PROJECTS */
+.proj-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;
+}
+.proj-card{
+  background:var(--white);padding:2rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+}
+.proj-index{font-family:var(--fm);font-size:10px;color:var(--ink3);letter-spacing:0.08em}
+.proj-title{font-family:var(--ff);font-size:1.1rem;font-weight:500;color:var(--ink)}
+.proj-desc{font-size:13.5px;color:var(--ink2);line-height:1.75;flex:1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.5rem}
+.proj-tag{
+  font-family:var(--fm);font-size:10px;color:var(--ink3);
+  border:1px solid var(--line);
+  padding:2px 8px;border-radius:2px;
+}
+
+/* CERTIFICATIONS */
+.certs-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:4px;overflow:hidden;
+}
+.cert-row{
+  background:var(--white);
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:1rem 1.4rem;gap:1rem;
+}
+.cert-name{font-size:13.5px;font-weight:400;color:var(--ink)}
+.cert-date{font-family:var(--fm);font-size:11px;color:var(--ink3);flex-shrink:0}
+
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:180px 1fr;gap:3rem;align-items:start}
+.contact-body{}
+.contact-heading{
+  font-family:var(--ff);font-size:clamp(1.6rem,2.5vw,2.2rem);
+  font-weight:400;color:var(--ink);
+  line-height:1.25;margin-bottom:1.25rem;letter-spacing:-0.01em;
+}
+.contact-sub{font-size:14.5px;color:var(--ink2);line-height:1.85;max-width:520px;margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.c-link{
+  display:flex;align-items:center;gap:1.25rem;
+  padding:0.9rem 0;
+  border-top:1px solid var(--line);
+  font-size:14px;color:var(--ink2);
+  transition:color 0.15s;
+}
+.c-link:last-child{border-bottom:1px solid var(--line)}
+.c-link:hover{color:var(--ink)}
+.c-label{font-family:var(--fm);font-size:10px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;width:72px;flex-shrink:0}
+.c-arrow{margin-left:auto;font-size:14px;color:var(--ink3);transition:transform 0.15s}
+.c-link:hover .c-arrow{transform:translate(2px,-2px);color:var(--ink)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line)}
+.footer-inner{
+  max-width:1080px;margin:0 auto;padding:1.5rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--fm);font-size:11px;color:var(--ink3);
+}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease,transform 0.5s ease}
+.fade.in{opacity:1;transform:none}
+
+@media(max-width:800px){
+  .nav-links{display:none}
+  .nav-inner{padding:0 1.5rem}
+  .hero{grid-template-columns:1fr;padding:90px 1.5rem 60px;gap:2.5rem}
+  .hero-right{display:none}
+  .container{padding:0 1.5rem}
+  .section-header{grid-template-columns:1fr;gap:0.5rem}
+  .about-layout{grid-template-columns:1fr;gap:2rem}
+  .about-spacer{display:none}
+  .exp-item{grid-template-columns:1fr;gap:0.4rem}
+  .skills-table{grid-template-columns:1fr}
+  .sk-cat{border-bottom:none;padding-bottom:0.5rem}
+  .proj-grid{grid-template-columns:1fr}
+  .certs-grid{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:1fr;gap:1rem}
+  .footer-inner{flex-direction:column;gap:0.4rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Danam Sree Mahima</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Python Developer · AI/ML · Hyderabad, India</div>
+    <h1 class="hero-name">Danam Sree Mahima</h1>
+    <p class="hero-desc">
+      Python developer with 1+ year of experience designing and evaluating AI systems, ML pipelines, and LLM fine-tuning workflows. BTech in Computer Science from KL University. Open to software engineering, backend, full-stack and AI/ML roles.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-dark">Contact me</a>
+      <a href="Danam_Sree_Mahima_Resume.pdf" target="_blank" class="btn btn-light">Download CV</a>
+      <a href="https://github.com/mahima2010030336" target="_blank" class="btn btn-light">GitHub</a>
+      <a href="https://www.linkedin.com/in/danam-sree-mahima-1a3b1b200" target="_blank" class="btn btn-light">LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stats">
+      <div class="h-stat">
+        <span class="h-num">200+</span>
+        <span class="h-label">ML code samples reviewed</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-num">100+</span>
+        <span class="h-label">Production bugs resolved</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-num">8+</span>
+        <span class="h-label">Cloud certifications</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-num">8.24</span>
+        <span class="h-label">BTech CGPA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="container">
+  <div class="section" id="about">
+    <div class="section-header fade">
+      <span class="section-num">01 / About</span>
+      <h2 class="section-title">Background</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-spacer"></div>
+      <div class="about-body fade">
+        <p>I am a Python developer based in Hyderabad with a focus on AI and machine learning. My work centres on the full lifecycle of ML systems — from data curation and model evaluation to pipeline debugging and production deployment.</p>
+        <p>At <strong>Turing</strong>, I reviewed and evaluated 200+ ML code samples, built LLM fine-tuning datasets covering tool-calling and RLHF workflows, and supported testing and validation of AI model outputs in safety-aware deployment contexts. I also resolved 100+ production-level bugs across Docker-based ML environments.</p>
+        <p>I hold a <strong>BTech in Computer Science</strong> from KL University (CGPA 8.24) and have earned certifications across AWS, Azure, Oracle Cloud, and Google Cloud. I also practice competitive programming on LeetCode (145 problems solved, rating 1497) and CodeChef (highest rating 1521), with a longer-term goal of FAANG-level interviews.</p>
+        <p>In November 2025, I published research on customer analytics at the 7th International Conference on Computing, Communication and Power Engineering (ICCCPE).</p>
+      </div>
+      <div class="about-meta fade">
+        <div class="meta-row">
+          <div class="meta-key">Location</div>
+          <div class="meta-val">Hyderabad, India</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Education</div>
+          <div class="meta-val">BTech CS · KL University · 2024</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Email</div>
+          <div class="meta-val"><a href="mailto:2010030336cse@gmail.com">2010030336cse@gmail.com</a></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">GitHub</div>
+          <div class="meta-val"><a href="https://github.com/mahima2010030336" target="_blank">mahima2010030336</a></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">LinkedIn</div>
+          <div class="meta-val"><a href="https://www.linkedin.com/in/danam-sree-mahima-1a3b1b200" target="_blank">danam-sree-mahima</a></div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-key">Status</div>
+          <div class="meta-val">Open to opportunities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section" id="experience">
+    <div class="section-header fade">
+      <span class="section-num">02 / Experience</span>
+      <h2 class="section-title">Work history</h2>
+    </div>
+    <div class="fade">
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Jul 2024 – Aug 2025</div>
+          <div class="exp-loc">Remote</div>
+        </div>
+        <div>
+          <div class="exp-role">Python Developer</div>
+          <div class="exp-company">Turing</div>
+          <ul class="exp-list">
+            <li>Reviewed and evaluated 200+ ML code samples across PyTorch, Scikit-learn, NumPy, and Pandas to support model training and evaluation for frontier AI systems.</li>
+            <li>Designed and curated multi-turn agentic conversation datasets for LLM fine-tuning and language modelling across 10+ task categories, covering tool-calling, prompt engineering, and RLHF annotation.</li>
+            <li>Applied Python and Pandas for data manipulation and analysis; supported deployment of ML model outputs into production evaluation pipelines.</li>
+            <li>Supported testing and validation of AI model outputs using Pytest (TDD), ensuring data integrity across safety-aware deployment contexts.</li>
+            <li>Diagnosed and resolved 100+ production-level bugs in Docker-based ML environments, reducing pipeline failure rates across agile delivery cycles.</li>
+            <li>Collaborated with cross-functional teams to gather requirements, document processes, and maintain clear communication across the team.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Aug – Sep 2023</div>
+          <div class="exp-loc">Remote</div>
+        </div>
+        <div>
+          <div class="exp-role">Data Science Intern</div>
+          <div class="exp-company">iNeuBytes</div>
+          <ul class="exp-list">
+            <li>Built and compared Ridge Regression and Random Forest models to forecast pollution levels; performed feature engineering and hyperparameter tuning using Scikit-learn.</li>
+            <li>Conducted predictive modelling for customer segmentation on an e-commerce platform; communicated findings via Matplotlib and Power BI dashboards.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section" id="skills">
+    <div class="section-header fade">
+      <span class="section-num">03 / Skills</span>
+      <h2 class="section-title">Technical skills</h2>
+    </div>
+    <div class="skills-table fade">
+      <div class="skills-table-row">
+        <div class="sk-cat">Languages</div>
+        <div class="sk-items">
+          <span class="sk-pill">Python</span>
+          <span class="sk-pill">SQL</span>
+          <span class="sk-pill">Java</span>
+          <span class="sk-pill">JavaScript</span>
+          <span class="sk-pill">R</span>
+        </div>
+      </div>
+      <div class="skills-table-row">
+        <div class="sk-cat">Machine Learning</div>
+        <div class="sk-items">
+          <span class="sk-pill">PyTorch</span>
+          <span class="sk-pill">Scikit-learn</span>
+          <span class="sk-pill">TensorFlow</span>
+          <span class="sk-pill">Random Forest</span>
+          <span class="sk-pill">Regression</span>
+          <span class="sk-pill">K-Means Clustering</span>
+        </div>
+      </div>
+      <div class="skills-table-row">
+        <div class="sk-cat">Data & Analytics</div>
+        <div class="sk-items">
+          <span class="sk-pill">Pandas</span>
+          <span class="sk-pill">NumPy</span>
+          <span class="sk-pill">Matplotlib</span>
+          <span class="sk-pill">Power BI</span>
+          <span class="sk-pill">Tableau</span>
+        </div>
+      </div>
+      <div class="skills-table-row">
+        <div class="sk-cat">GenAI & LLM</div>
+        <div class="sk-items">
+          <span class="sk-pill">LLM Evaluation</span>
+          <span class="sk-pill">Prompt Engineering</span>
+          <span class="sk-pill">Fine-tuning Data Curation</span>
+          <span class="sk-pill">RLHF</span>
+          <span class="sk-pill">Agentic Systems</span>
+          <span class="sk-pill">Language Modelling</span>
+        </div>
+      </div>
+      <div class="skills-table-row">
+        <div class="sk-cat">Cloud</div>
+        <div class="sk-items">
+          <span class="sk-pill">AWS</span>
+          <span class="sk-pill">Azure</span>
+          <span class="sk-pill">OCI</span>
+          <span class="sk-pill">Google Cloud</span>
+          <span class="sk-pill">Vertex AI</span>
+        </div>
+      </div>
+      <div class="skills-table-row">
+        <div class="sk-cat">Dev & Testing</div>
+        <div class="sk-items">
+          <span class="sk-pill">Flask</span>
+          <span class="sk-pill">FastAPI</span>
+          <span class="sk-pill">Vue.js</span>
+          <span class="sk-pill">REST API</span>
+          <span class="sk-pill">JWT</span>
+          <span class="sk-pill">Redis</span>
+          <span class="sk-pill">Celery</span>
+          <span class="sk-pill">Docker</span>
+          <span class="sk-pill">Git</span>
+          <span class="sk-pill">Pytest</span>
+          <span class="sk-pill">Playwright</span>
+          <span class="sk-pill">TDD</span>
+          <span class="sk-pill">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section" id="projects">
+    <div class="section-header fade">
+      <span class="section-num">04 / Projects</span>
+      <h2 class="section-title">Selected work</h2>
+    </div>
+    <div class="proj-grid fade">
+      <div class="proj-card">
+        <div class="proj-index">01</div>
+        <div class="proj-title">Trekking Management App</div>
+        <p class="proj-desc">Full-stack web app where admins, trek staff and trekkers manage treks and bookings. Flask REST API (documented with an OpenAPI spec) with JWT authentication and role-based access for admin, staff and user roles, a Vue 3 frontend, Redis caching, and Celery background jobs for daily trek reminders, monthly reports and CSV export.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">Vue 3</span>
+          <span class="proj-tag">JWT</span>
+          <span class="proj-tag">Redis</span>
+          <span class="proj-tag">Celery</span>
+          <span class="proj-tag">REST API</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">02</div>
+        <div class="proj-title">Vehicle Parking Application</div>
+        <p class="proj-desc">Flask web application built on SQLite for managing parking lots and bookings. Features login with hashed passwords, separate admin and user access, server-side input validation (password rules, pincode and vehicle number formats, duplicate checks), parking slot management and summary charts.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">SQLite</span>
+          <span class="proj-tag">Bootstrap</span>
+          <span class="proj-tag">Authentication</span>
+          <span class="proj-tag">Validation</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">03</div>
+        <div class="proj-title">Smart MCQ Solver (Kaggle)</div>
+        <p class="proj-desc">End-to-end NLP pipeline on Kaggle GPU: TF-IDF and Word2Vec baselines, RAG-based retrieval, DeBERTa-v3-base fine-tuning with PEFT, a LightGBM re-ranker and an ensemble. Reached a MAP@3 of 0.76 on the leaderboard, with experiments tracked in W&amp;B.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">PyTorch</span>
+          <span class="proj-tag">RAG</span>
+          <span class="proj-tag">PEFT</span>
+          <span class="proj-tag">LightGBM</span>
+          <span class="proj-tag">Kaggle</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">04</div>
+        <div class="proj-title">Heart Disease Prediction</div>
+        <p class="proj-desc">Trained Decision Tree and Logistic Regression models on healthcare data. Feature engineering pipeline achieving 91% accuracy, validated across train/test splits with metrics visualised using Matplotlib.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Scikit-learn</span>
+          <span class="proj-tag">Matplotlib</span>
+          <span class="proj-tag">Classification</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">05</div>
+        <div class="proj-title">Spotify Data Analysis</div>
+        <p class="proj-desc">Applied Random Forest on Kaggle music data to predict song popularity at 89% accuracy. Feature correlations and trends surfaced via a Power BI dashboard to support data-driven decisions.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Random Forest</span>
+          <span class="proj-tag">Power BI</span>
+          <span class="proj-tag">Kaggle</span>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-index">06</div>
+        <div class="proj-title">Customer Insights: Term Deposit Subscriptions</div>
+        <p class="proj-desc">Published research at the 7th ICCCPE (Nov 2025). Analysed factors influencing term deposit subscriptions using predictive modelling and data analytics to surface actionable customer insights.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Research</span>
+          <span class="proj-tag">Published · ICCCPE 2025</span>
+          <span class="proj-tag">Predictive Modelling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section" id="certifications">
+    <div class="section-header fade">
+      <span class="section-num">05 / Certifications</span>
+      <h2 class="section-title">Credentials</h2>
+    </div>
+    <div class="certs-grid fade">
+      <div class="cert-row"><span class="cert-name">OCI Certified Generative AI Professional</span><span class="cert-date">Oct 2025</span></div>
+      <div class="cert-row"><span class="cert-name">Google Cloud: Responsible AI & MLOps — Vertex AI</span><span class="cert-date">May 2025</span></div>
+      <div class="cert-row"><span class="cert-name">Google Cloud: AI Architecture & Serverless Applications</span><span class="cert-date">Apr 2025</span></div>
+      <div class="cert-row"><span class="cert-name">OCI Architect Associate</span><span class="cert-date">Aug 2023</span></div>
+      <div class="cert-row"><span class="cert-name">AWS Academy – Data Analytics</span><span class="cert-date">Feb 2023</span></div>
+      <div class="cert-row"><span class="cert-name">AWS Academy – Cloud Architecting</span><span class="cert-date">Dec 2022</span></div>
+      <div class="cert-row"><span class="cert-name">AWS Academy – Cloud Foundations</span><span class="cert-date">Aug 2022</span></div>
+      <div class="cert-row"><span class="cert-name">Microsoft Azure Fundamentals</span><span class="cert-date">Mar 2023</span></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section" id="contact">
+    <div class="contact-layout">
+      <div>
+        <div class="section-num fade" style="padding-top:6px">06 / Contact</div>
+      </div>
+      <div class="contact-body">
+        <h2 class="contact-heading fade">Available for new opportunities</h2>
+        <p class="contact-sub fade">I am actively looking for roles in data science, machine learning engineering, and AI development. Open to full-time positions across India. Feel free to reach out via any of the channels below.</p>
+        <a href="mailto:2010030336cse@gmail.com" class="btn btn-dark fade">Send an email</a>
+        <div class="contact-links fade">
+          <a href="mailto:2010030336cse@gmail.com" class="c-link">
+            <span class="c-label">Email</span>
+            2010030336cse@gmail.com
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="https://www.linkedin.com/in/danam-sree-mahima-1a3b1b200" target="_blank" class="c-link">
+            <span class="c-label">LinkedIn</span>
+            danam-sree-mahima
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="https://github.com/mahima2010030336" target="_blank" class="c-link">
+            <span class="c-label">GitHub</span>
+            mahima2010030336
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="tel:+918309537553" class="c-link">
+            <span class="c-label">Phone</span>
+            +91 83095 37553
+            <span class="c-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>Danam Sree Mahima · Hyderabad, India</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
